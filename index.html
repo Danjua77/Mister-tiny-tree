@@ -210,7 +210,7 @@
             <img src="DonArbolito.png" class="arbol-chan-img" id="arbol-chan-img" alt="Tree-chan" />
             <div class="arbol-chan-titulo" id="arbol-chan-titulo">Don Árbolito</div>
             <div class="arbol-chan-texto" id="arbol-chan-texto">
-                Dear User, I must confess it is regrettable to deny you the clue just like that…<br>
+                Dear User, I must confess it is regrettable to deny you the clue just like that...<br>
                 But you will understand that, in your noble quest for the cache, achievements must be earned with honor and elegance.
             </div>
             <button class="btn-continuar" id="btn-continuar">Continue</button>
@@ -253,11 +253,11 @@
                 // Muestra el canvas y el cuadro azul, pero el juego inicia tras el contador
                 document.body.innerHTML = `
     <style>
-        /* ... pong styles ya incluidos arriba ... */
+        /* ... pong styles already included above ... */
     </style>
     <div id="pong-container">
-        <!-- Imagen arriba del cuadro azul -->
-        <img src="doncon.png" alt="Don Árbol" style="width:28vw;max-width:110px;min-width:60px;margin-bottom:1.2vh;margin-top:calc(2vh - 7px);z-index:2;position:absolute;top:calc(2vh - 7px);left:50%;transform:translateX(-50%);" id="pong-top-img" />
+        <!-- Image above the blue box -->
+        <img src="DonArbolito.png" alt="Don Árbol" style="width:28vw;max-width:110px;min-width:60px;margin-bottom:1.2vh;margin-top:calc(2vh - 20px);z-index:2;position:absolute;top:calc(2vh - 17px);left:50%;transform:translateX(-50%);" id="pong-top-img" />
         <canvas id="pong-canvas"></canvas>
         <div id="pong-countdown"
             style="position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:50;pointer-events:none;">
@@ -588,7 +588,7 @@
                         const pongContainer = document.getElementById('pong-container');
                         let html = '';
                         if (playerWon) {
-                            // Espacio de diálogo igual a los otros, con fondo, imagen, título, texto y botón
+                            // Dialog box with background, image, title, text and button
                             html = `
                                 <div class="arbol-chan-container" id="pong-end" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:10;background:url('Fondo texto.jpg') no-repeat center center;background-size:cover;display:flex;flex-direction:column;justify-content:center;align-items:center;">
                                     <div class="arbol-chan-content" style="background:none;box-shadow:none;">
@@ -597,8 +597,8 @@
                                         <div class="arbol-chan-texto" style="color:#fff;">
                                             “Excellent performance, noble user!<br>
                                             You have shown courage and precision.”<br><br>
-                                            “As promised, I will grant you the clue, which is a picture taken in this park.”<br><br>
-                                            “Find the place, observe carefully… and find the code.”<br>
+                                            “As promised, I will grant you the clue, which is a photo taken in this park.”<br><br>
+                                            “Find the place, observe carefully... and find the code.”<br>
                                             And remember: do not give up, neither in this quest nor in your journey.”
                                         </div>
                                         <button id="pong-show-clue" class="btn-continuar" style="margin-top:1.2rem;">See clue</button>
@@ -607,7 +607,7 @@
                             `;
                             pongContainer.insertAdjacentHTML('beforeend', html);
                             document.getElementById('pong-show-clue').onclick = function() {
-                                // Reemplaza el diálogo por la pista
+                                // Replace dialog with the clue
                                 document.getElementById('pong-end').innerHTML = `
                                     <h2 style="margin-top:0;">Next clue</h2>
                                     <div id="pong-next-img" style="margin:0; padding:0;">
@@ -623,7 +623,7 @@
                             html = `
                                 <div id="pong-end">
                                     <img src="DonArbolito.png" class="arbol-img" alt="Don Árbol" />
-                                    <h2>How unfortunate....</h2>
+                                    <h2>How unfortunate...</h2>
                                     <button id="pong-retry">Continue</button>
                                 </div>
                             `;
