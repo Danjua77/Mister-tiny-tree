@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Puzzle Game</title>
+    <title>Mister tiny tree Sequence</title>
     <!-- Agrega meta viewport para móviles -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -205,36 +205,17 @@
     </style>
 </head>
 <body>
-    <header>
-        <h1>Puzzle Game</h1>
-        <!-- ...existing code... -->
-    </header>
-    <main>
-        <section>
-            <h2>How to Play</h2>
-            <p>
-                Arrange the pieces to complete the image. Drag and drop each piece to its correct position.
-            </p>
-        </section>
-        <section>
-            <button id="startButton">Start Game</button>
-            <button id="resetButton">Reset</button>
-        </section>
-        <div class="arbol-chan-container" id="arbol-chan-container">
-            <div class="arbol-chan-content">
-                <img src="DonArbolito.png" class="arbol-chan-img" id="arbol-chan-img" alt="Tree-chan" />
-                <div class="arbol-chan-titulo" id="arbol-chan-titulo">Don Árbolito</div>
-                <div class="arbol-chan-texto" id="arbol-chan-texto">
-                    Dear User, I must confess it is regrettable to deny you the clue just like that...<br>
-                    But you will understand that, in your noble quest for the cache, achievements must be earned with honor and elegance.
-                </div>
-                <button class="btn-continuar" id="btn-continuar">Continue</button>
+    <div class="arbol-chan-container" id="arbol-chan-container">
+        <div class="arbol-chan-content">
+            <img src="DonArbolito.png" class="arbol-chan-img" id="arbol-chan-img" alt="Mister tiny tree" />
+            <div class="arbol-chan-titulo" id="arbol-chan-titulo">Mister tiny tree</div>
+            <div class="arbol-chan-texto" id="arbol-chan-texto">
+                Dear user, I must confess it's unfortunate to deny you the clue just like that...<br>
+                But you will understand that, in your noble treasure hunt, achievements must be earned with honor and elegance.
             </div>
+            <button class="btn-continuar" id="btn-continuar">Continue</button>
         </div>
-    </main>
-    <footer>
-        <p>&copy; 2024 Puzzle Game. All rights reserved.</p>
-    </footer>
+    </div>
     <script>
         // Animación de entrada de Don Árbol
         const arbolChanImg = document.getElementById('arbol-chan-img');
@@ -266,7 +247,7 @@
         const btnContinuar = document.getElementById('btn-continuar');
         btnContinuar.addEventListener('click', function() {
             if (arbolChanDialogStep === 0) {
-                arbolChanTexto.innerHTML = "I will grant you a fair chance. Survive 15 seconds of my attacks and score 5 points during the seconds when I am not defending... Only then, this human-plant duel will be resolved with dignity.";
+                arbolChanTexto.innerHTML = "I will grant you a fair chance. Survive 15 seconds against my attacks and score 5 points during the seconds when I am not defending... Only then will this human-plant duel be resolved with dignity.";
                 arbolChanDialogStep = 1;
             } else {
                 // Muestra el canvas y el cuadro azul, pero el juego inicia tras el contador
@@ -276,7 +257,7 @@
     </style>
     <div id="pong-container">
         <!-- Image above the blue box -->
-        <img src="DonArbolito.png" alt="Don Árbol" style="width:28vw;max-width:110px;min-width:60px;margin-bottom:1.2vh;margin-top:calc(2vh - 20px);z-index:2;position:absolute;top:calc(2vh - 17px);left:50%;transform:translateX(-50%);" id="pong-top-img" />
+        <img src="DonArbolito.png" alt="Mister tiny tree" style="width:28vw;max-width:110px;min-width:60px;margin-bottom:1.2vh;margin-top:calc(2vh - 20px);z-index:2;position:absolute;top:calc(2vh - 17px);left:50%;transform:translateX(-50%);" id="pong-top-img" />
         <canvas id="pong-canvas"></canvas>
         <div id="pong-countdown"
             style="position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:50;pointer-events:none;">
@@ -611,14 +592,14 @@
                             html = `
                                 <div class="arbol-chan-container" id="pong-end" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:10;background:url('Fondo texto.jpg') no-repeat center center;background-size:cover;display:flex;flex-direction:column;justify-content:center;align-items:center;">
                                     <div class="arbol-chan-content" style="background:none;box-shadow:none;">
-                                        <img src="DonArbolito.png" class="arbol-chan-img" alt="Don Árbol" style="opacity:1;transform:none;margin-bottom:0.7rem;" />
-                                        <div class="arbol-chan-titulo" style="color:#178a2c;margin-bottom:0.7rem;">Don Árbolito</div>
+                                        <img src="DonArbolito.png" class="arbol-chan-img" alt="Mister tiny tree" style="opacity:1;transform:none;margin-bottom:0.7rem;" />
+                                        <div class="arbol-chan-titulo" style="color:#178a2c;margin-bottom:0.7rem;">Mister tiny tree</div>
                                         <div class="arbol-chan-texto" style="color:#fff;">
                                             “Excellent performance, noble user!<br>
                                             You have shown courage and precision.”<br><br>
                                             “As promised, I will grant you the clue, which is a photo taken in this park.”<br><br>
-                                            “Find the place, observe carefully... and find the code.”<br>
-                                            And remember: do not give up, neither in this quest nor in your journey.”
+                                            “Look for the place, observe carefully... and find the code.”<br>
+                                            And remember: never give up, not in this quest nor in your journey.”
                                         </div>
                                         <button id="pong-show-clue" class="btn-continuar" style="margin-top:1.2rem;">See clue</button>
                                     </div>
@@ -641,8 +622,8 @@
                         } else {
                             html = `
                                 <div id="pong-end">
-                                    <img src="DonArbolito.png" class="arbol-img" alt="Don Árbol" />
-                                    <h2>How unfortunate...</h2>
+                                    <img src="DonArbolito.png" class="arbol-img" alt="Mister tiny tree" />
+                                    <h2>What bad luck...</h2>
                                     <button id="pong-retry">Continue</button>
                                 </div>
                             `;
