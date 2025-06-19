@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Don Árbolito Sequence</title>
+    <title>Puzzle Game</title>
     <!-- Agrega meta viewport para móviles -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -205,17 +205,36 @@
     </style>
 </head>
 <body>
-    <div class="arbol-chan-container" id="arbol-chan-container">
-        <div class="arbol-chan-content">
-            <img src="DonArbolito.png" class="arbol-chan-img" id="arbol-chan-img" alt="Tree-chan" />
-            <div class="arbol-chan-titulo" id="arbol-chan-titulo">Don Árbolito</div>
-            <div class="arbol-chan-texto" id="arbol-chan-texto">
-                Dear User, I must confess it is regrettable to deny you the clue just like that...<br>
-                But you will understand that, in your noble quest for the cache, achievements must be earned with honor and elegance.
+    <header>
+        <h1>Puzzle Game</h1>
+        <!-- ...existing code... -->
+    </header>
+    <main>
+        <section>
+            <h2>How to Play</h2>
+            <p>
+                Arrange the pieces to complete the image. Drag and drop each piece to its correct position.
+            </p>
+        </section>
+        <section>
+            <button id="startButton">Start Game</button>
+            <button id="resetButton">Reset</button>
+        </section>
+        <div class="arbol-chan-container" id="arbol-chan-container">
+            <div class="arbol-chan-content">
+                <img src="DonArbolito.png" class="arbol-chan-img" id="arbol-chan-img" alt="Tree-chan" />
+                <div class="arbol-chan-titulo" id="arbol-chan-titulo">Don Árbolito</div>
+                <div class="arbol-chan-texto" id="arbol-chan-texto">
+                    Dear User, I must confess it is regrettable to deny you the clue just like that...<br>
+                    But you will understand that, in your noble quest for the cache, achievements must be earned with honor and elegance.
+                </div>
+                <button class="btn-continuar" id="btn-continuar">Continue</button>
             </div>
-            <button class="btn-continuar" id="btn-continuar">Continue</button>
         </div>
-    </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Puzzle Game. All rights reserved.</p>
+    </footer>
     <script>
         // Animación de entrada de Don Árbol
         const arbolChanImg = document.getElementById('arbol-chan-img');
@@ -660,6 +679,11 @@
                     if (audio) {
                         audio.currentTime = 0;
                         audio.play().catch(()=>{});
+                        // Asegura que la música se repita aunque falle el atributo loop
+                        audio.addEventListener('ended', function() {
+                            audio.currentTime = 0;
+                            audio.play().catch(()=>{});
+                        });
                     }
 
                     const countdownInterval = setInterval(() => {
