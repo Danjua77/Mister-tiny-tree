@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Mister tiny tree Sequence</title>
+    <title>Mister Tiny Tree Sequence</title>
     <!-- Agrega meta viewport para móviles -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -207,11 +207,11 @@
 <body>
     <div class="arbol-chan-container" id="arbol-chan-container">
         <div class="arbol-chan-content">
-            <img src="DonArbolito.png" class="arbol-chan-img" id="arbol-chan-img" alt="Mister tiny tree" />
-            <div class="arbol-chan-titulo" id="arbol-chan-titulo">Mister tiny tree</div>
+            <img src="DonArbolito.png" class="arbol-chan-img" id="arbol-chan-img" alt="Tree-chan" />
+            <div class="arbol-chan-titulo" id="arbol-chan-titulo">Mister Tiny Tree</div>
             <div class="arbol-chan-texto" id="arbol-chan-texto">
-                Dear user, I regret to say I cannot simply give you the clue...<br>
-                But you must understand that, in your noble quest for the cache, achievements must be earned with honor and elegance.
+                Dear user, I must confess it is regrettable to deny you the clue just like that...<br>
+                But you will understand that, in your noble quest for the cache, achievements must be earned with honor and elegance.
             </div>
             <button class="btn-continuar" id="btn-continuar">Continue</button>
         </div>
@@ -257,7 +257,7 @@
     </style>
     <div id="pong-container">
         <!-- Image above the blue box -->
-        <img src="DonArbolito.png" alt="Mister tiny tree" style="width:28vw;max-width:110px;min-width:60px;margin-bottom:1.2vh;margin-top:calc(2vh - 20px);z-index:2;position:absolute;top:calc(2vh - 17px);left:50%;transform:translateX(-50%);" id="pong-top-img" />
+        <img src="DonArbolito.png" alt="Don Árbol" style="width:28vw;max-width:110px;min-width:60px;margin-bottom:1.2vh;margin-top:calc(2vh - 20px);z-index:2;position:absolute;top:calc(2vh - 17px);left:50%;transform:translateX(-50%);" id="pong-top-img" />
         <canvas id="pong-canvas"></canvas>
         <div id="pong-countdown"
             style="position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:50;pointer-events:none;">
@@ -307,6 +307,9 @@
                     let running = false; // El juego inicia después del contador
                     let touchX = null;
 
+                    let ballTrail = [];
+                    const BALL_TRAIL_LENGTH = 8;
+
                     function resetPositions(servingToPlayer = false) {
                         const { w, h } = getGameSize();
                         player.w = paddleW(); player.h = paddleH();
@@ -333,6 +336,8 @@
                             ball.vy *= baseSpeed/speed;
                         }
                         aiTimerLastUpdate = Date.now();
+                        // Reinicia la estela cuando se reinicia la posición de la bola
+                        ballTrail = [];
                     }
 
                     function drawTable() {
@@ -411,7 +416,26 @@
                     }
 
                     function drawBall() {
+                        // Agrega la posición actual al inicio del trail
+                        ballTrail.unshift({ x: ball.x, y: ball.y });
+                        if (ballTrail.length > BALL_TRAIL_LENGTH) ballTrail.pop();
+                        // Dibuja la estela amarillo #ffe44d
+                        for (let i = ballTrail.length - 1; i >= 0; i--) {
+                            ctx.save();
+                            let t = i / BALL_TRAIL_LENGTH;
+                            let alpha = 0.18 + 0.22 * t;
+                            ctx.globalAlpha = alpha;
+                            ctx.fillStyle = '#ffe44d';
+                            ctx.shadowColor = '#ffe44d';
+                            ctx.shadowBlur = 16 * t;
+                            ctx.beginPath();
+                            ctx.arc(ballTrail[i].x + ball.size/2, ballTrail[i].y + ball.size/2, ball.size/2, 0, 2*Math.PI);
+                            ctx.fill();
+                            ctx.restore();
+                        }
+                        // Dibuja la bola principal
                         ctx.save();
+                        ctx.globalAlpha = 1;
                         ctx.fillStyle = "#fff";
                         ctx.shadowColor = "#ffe44d";
                         ctx.shadowBlur = 8;
@@ -586,22 +610,28 @@
 
                     function showEndScreen(playerWon) {
                         const pongContainer = document.getElementById('pong-container');
+                        // Detener la música al finalizar el juego
+                        const audio = document.getElementById('pong-audio');
+                        if (audio) {
+                            audio.pause();
+                            audio.currentTime = 0;
+                        }
                         let html = '';
                         if (playerWon) {
                             // Dialog box with background, image, title, text and button
                             html = `
                                 <div class="arbol-chan-container" id="pong-end" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:10;background:url('Fondo texto.jpg') no-repeat center center;background-size:cover;display:flex;flex-direction:column;justify-content:center;align-items:center;">
                                     <div class="arbol-chan-content" style="background:none;box-shadow:none;">
-                                        <img src="DonArbolito.png" class="arbol-chan-img" alt="Mister tiny tree" style="opacity:1;transform:none;margin-bottom:0.7rem;" />
-                                        <div class="arbol-chan-titulo" style="color:#178a2c;margin-bottom:0.7rem;">Mister tiny tree</div>
+                                        <img src="DonArbolito.png" class="arbol-chan-img" alt="Don Árbol" style="opacity:1;transform:none;margin-bottom:0.7rem;" />
+                                        <div class="arbol-chan-titulo" style="color:#178a2c;margin-bottom:0.7rem;">Mister Tiny Tree</div>
                                         <div class="arbol-chan-texto" style="color:#fff;">
                                             Excellent performance, noble user!<br>
                                             You have shown courage and precision.<br><br>
                                             As promised, I will grant you a clue, which is a photo taken in this park.<br><br>
                                             Look for the place, observe carefully... and find the code.<br>
-                                            And remember, never give up.
+                                            And remember to never give up.
                                         </div>
-                                        <button id="pong-show-clue" class="btn-continuar" style="margin-top:1.2rem;">Show clue</button>
+                                        <button id="pong-show-clue" class="btn-continuar" style="margin-top:1.2rem;">See clue</button>
                                     </div>
                                 </div>
                             `;
@@ -622,7 +652,7 @@
                         } else {
                             html = `
                                 <div id="pong-end">
-                                    <img src="DonArbolito.png" class="arbol-img" alt="Mister tiny tree" />
+                                    <img src="DonArbolito.png" class="arbol-img" alt="Don Árbol" />
                                     <h2>How unfortunate...</h2>
                                     <button id="pong-retry">Continue</button>
                                 </div>
